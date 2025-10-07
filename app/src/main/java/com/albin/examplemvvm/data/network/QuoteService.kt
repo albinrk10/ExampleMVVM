@@ -1,17 +1,18 @@
 package com.albin.examplemvvm.data.network
 
-import com.albin.examplemvvm.core.RetrofitHelper
 import com.albin.examplemvvm.data.model.QuoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class QuoteService {
-    private val retrofit = RetrofitHelper.getRetrofit()
 
-    suspend fun getQuotes(): List<QuoteModel>{
-        return withContext(Dispatchers.IO){
-            val response = retrofit.create(QuoteApiClient::class.java).getAllQuotes()
-            response.body() ?:emptyList()
+class QuoteService @Inject constructor(private val api:QuoteApiClient) {
+
+    suspend fun getQuotes(): List<QuoteModel> {
+        return withContext(Dispatchers.IO) {
+            val response = api.getAllQuotes()
+            response.body() ?: emptyList()
         }
     }
+
 }

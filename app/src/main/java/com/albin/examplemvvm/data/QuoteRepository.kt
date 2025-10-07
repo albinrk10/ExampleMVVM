@@ -3,14 +3,18 @@ package com.albin.examplemvvm.data
 import com.albin.examplemvvm.data.model.QuoteModel
 import com.albin.examplemvvm.data.model.QuoteProvider
 import com.albin.examplemvvm.data.network.QuoteService
+import javax.inject.Inject
 
-class QuoteRepository {
+class QuoteRepository @Inject constructor(
+    private val api:QuoteService ,
+    private val quoteProvider: QuoteProvider
+) {
 
-    private val api = QuoteService()
+    //private val api = QuoteService()
 
     suspend fun getAllQuotes(): List<QuoteModel>{
         val response = api.getQuotes()
-        QuoteProvider.quotes=response
+        quoteProvider.quotes=response
        return  response
     }
 }
