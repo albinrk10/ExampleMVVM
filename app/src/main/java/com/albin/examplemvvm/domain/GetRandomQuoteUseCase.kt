@@ -1,15 +1,16 @@
 package com.albin.examplemvvm.domain
+import com.albin.examplemvvm.data.QuoteRepository
 import com.albin.examplemvvm.data.model.QuoteModel
-import com.albin.examplemvvm.data.model.QuoteProvider
+import com.albin.examplemvvm.domain.model.Quote
 import javax.inject.Inject
 
 class GetRandomQuoteUseCase @Inject constructor(
- private val quoteProvider: QuoteProvider
+ private val repository: QuoteRepository
 ) {
    // private val repository = QuoteRepository()
 
-    operator fun invoke(): QuoteModel? {
-        val quotes = quoteProvider.quotes
+  suspend  operator fun invoke(): Quote? {
+        val quotes = repository.getAllQuotesFomDatabase()
         if (!quotes.isNullOrEmpty()) {
             val randomNumber = (quotes.indices).random()
             return quotes[randomNumber]
