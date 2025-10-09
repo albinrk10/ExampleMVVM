@@ -20,14 +20,15 @@ class QuoteRepository @Inject constructor(
         val response: List<QuoteModel> = api.getQuotes()
        return  response.map{it.toDomain()}
     }
-    suspend fun getAllQuotesFomDatabase(): List<Quote>{
-      val response: List<QuoteEntity> = quoteDao.getAllQuotes()
-        return  response.map{it.toDomain()}
+    suspend fun getAllQuotesFromDatabase():List<Quote>{
+        val response: List<QuoteEntity> = quoteDao.getAllQuotes()
+        return response.map { it.toDomain() }
     }
+
     suspend fun insertQuotes(quotes:List<QuoteEntity>){
         quoteDao.insertAll(quotes)
     }
-    suspend fun clearQuites(){
+    suspend fun clearQuotes(){
         quoteDao.deleteAllQuotes()
     }
 }

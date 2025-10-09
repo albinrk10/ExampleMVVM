@@ -59,6 +59,10 @@ dependencies {
     implementation(libs.converter.gson)
     //Corrutinas
     implementation(libs.kotlinx.coroutines.android)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
+
+
 
     //DagerHit
     implementation(libs.dagger.hilt)
@@ -73,6 +77,8 @@ dependencies {
 
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(kotlin("test"))
 }

@@ -15,12 +15,12 @@ class GetQuotesUseCase @Inject constructor(
         val quotes = repository.getAllQuotesFromApi()
 
       return  if (quotes.isNotEmpty()){
-            repository.clearQuites()
+            repository.clearQuotes()
             repository.insertQuotes(quotes.map { it.toDatabase() })
             quotes
 
         }else{
-            repository.getAllQuotesFomDatabase()
+            repository.getAllQuotesFromDatabase()
         }
     }
 
